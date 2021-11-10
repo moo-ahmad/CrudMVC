@@ -1,0 +1,198 @@
+﻿@*@model List<CrudMVC.Models.employee>*@
+@model CrudMVC.Models.employee
+@*@{ 
+    CrudMVC.Models.employee x = new CrudMVC.Models.employee();
+}*@
+
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.11.3/css/dataTables.bootstrap.min.css" />
+    
+    
+    
+
+
+    <style>
+
+        .jumbotron {
+            background-color: #0275d8;
+            color: white;
+            margin-top: 10px;
+        }
+
+        .glyphicon {
+            font-size: 20px;
+            margin-left: 20px;
+
+        }
+        
+        #emptable{
+            text-align:center;
+        }
+        .glyphicon-trash{
+            color:red;
+        }
+        .hovering i::before {
+            display: none;
+        }
+
+        .hovering:hover i::before {
+            display: block;
+        }
+
+        .btnAdd {
+            margin-left: 10px;
+            margin-bottom: 20px;
+        }
+        .modal-title{
+           font-weight:bold;
+        }
+
+    </style>
+
+    
+</head>
+
+<body>
+
+    <div class="container con">
+        <div class="jumbotron text-center">
+            <h1>Employee Record</h1>
+        </div>
+    </div>
+
+    <button type="button" id="btnadd" data-target="#myModal" data-toggle="modal" class="btnAdd btn-primary py-4 btn-lg">+ Add Record</button>
+
+    <!-- Modal -->
+    <div id="myModal" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+
+            <!-- Modal content-->
+            <div class="modal-content">
+                
+                <div class="modal-header">
+
+                    <h2 class="modal-title">Add Employee Record</h2>
+                </div>
+                <div class="modal-body">
+
+                    @using (Html.BeginForm("AddEmployee","Employee",FormMethod.Post))
+                    {
+                       
+                    <div class="container">
+
+                        <div class="form-group">
+
+                            <label>Name</label>
+                            @Html.TextBoxFor(x => x.FullName, new { @class = "form-control" })
+                            
+
+                        </div>
+                        <div class="form-group">
+
+                            <label>Age</label>
+                            @Html.TextBoxFor(x => x.Age, new { @type="number", @onkeypress = "return this.value.length<=1", @class = "form-control" })
+
+                        </div>
+                        <div class="form-group">
+
+                            <label>Hire Date</label>
+                            @Html.TextBoxFor(x => x.StartDate, new {@type="date", @max = "9999-12-31", @class = "form-control" })
+
+                        </div>
+                        <div class="form-group">
+                            <label>Salary</label>
+                            
+                            @Html.TextBoxFor(x => x.Salary, new { @type="number", @class = "form-control" })
+
+                        </div>
+                        <div class="form-group">
+                            <button type="submit" onclick="AddEmployee" class="btn btn-primary">Submit</button>
+                            <button type="reset" class="btn btn-primary">Reset</button>
+
+                        </div>
+
+                    </div>
+                    }
+
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+
+    <table id="emptable" class="table table-striped table-hover table-bordered" style="width:100%">
+        <thead>
+            <tr>
+                <th style="text-align:center;">Name</th>
+                <th style="text-align:center;">Age</th>
+                <th style="text-align:center;">Hire Date</th>
+                <th style="text-align:center;">Salary</th>
+                <th style="text-align:center;">Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            
+                @*@foreach (var item in Model)
+                {
+                    <tr>
+                        <td>@item.FullName</td>
+                        <td>@item.Age</td>
+                        <td>@item.StartDate.Value.ToShortDateString()</td>
+                        <td>@item.Salary</td>
+                        <td>
+
+                            <a href="#"><i class="glyphicon glyphicon-pencil"></i></a>
+                            <a href="#"><i class="glyphicon glyphicon-trash"></i></a>
+
+                        </td>
+                    </tr>
+                }*@
+
+        </tbody>
+
+    </table>
+
+    @section Scripts{
+
+        <script src="https://cdn.datatables.net/1.11.3/js/jquery.dataTables.min.js"></script>
+        <script src="https://cdn.datatables.net/1.11.3/js/dataTables.bootstrap.min.js"></script>
+        <script src="~/Scripts/jquery.validate.js"></script>
+        <script src="~/Scripts/jquery.validate.unobtrusive.js"></script>
+
+        <script>
+
+            $(document).ready(function () {
+                $('#emptable').DataTable();
+            });
+
+        </script>
+
+
+    }
+
+
+</body>
+
+</html>
+
+
+
+
+
+
+

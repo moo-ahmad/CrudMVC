@@ -13,10 +13,10 @@ namespace CrudMVC.Models
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class db_testEntities : DbContext
+    public partial class EmployeeEntities2 : DbContext
     {
-        public db_testEntities()
-            : base("name=db_testEntities")
+        public EmployeeEntities2()
+            : base("name=EmployeeEntities2")
         {
         }
     
@@ -25,6 +25,6 @@ namespace CrudMVC.Models
             throw new UnintentionalCodeFirstException();
         }
     
-        public virtual DbSet<tbl_Student> tbl_Student { get; set; }
+        public virtual DbSet<employee> employees { get; set; }
     }
 }

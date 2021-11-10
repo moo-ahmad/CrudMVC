@@ -16,7 +16,7 @@ namespace CrudMVC
             routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}/{id}",
-                defaults: new { controller = "Student", action = "Student", id = UrlParameter.Optional }
+                defaults: new { controller = "Employee", action = "Employee", id = UrlParameter.Optional }
             );
         }
     }

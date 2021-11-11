@@ -13,7 +13,7 @@ namespace CrudMVC.Models
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
     
-    public partial class employee
+    public partial class employee : List<employee>
     {
         public int ID { get; set; }
         public string FullName { get; set; }

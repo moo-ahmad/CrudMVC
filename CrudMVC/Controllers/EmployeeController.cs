@@ -13,19 +13,27 @@ namespace CrudMVC.Controllers
 
         EmployeeEntities2 dbobj2 = new EmployeeEntities2();
 
-        public ActionResult Employee(employee model)
+        public ActionResult Employee()
         {
 
             var res = dbobj2.employees.ToList();
-
+            
             return View(res);
         }
+
+        //[HttpGet]
+        //public PartialViewResult Create()
+        //{
+        //    var res = dbobj2.employees;
+        //    return PartialView("_DataList", res);
+        //}
+
         [HttpPost]
-        public void AddEmployee(employee model)
+        public ActionResult AddEmployee(employee model)
         {
             Debug.Write("We are in.....");
 
-            EmployeeEntities2 dbobj = new EmployeeEntities2();
+            
 
             try
             {
@@ -36,15 +44,16 @@ namespace CrudMVC.Controllers
                 obj.StartDate = model.StartDate;
                 obj.Salary = model.Salary;
 
-                dbobj.employees.Add(obj);
+                dbobj2.employees.Add(obj);
 
-                dbobj.SaveChanges();
+                dbobj2.SaveChanges();
             }
             catch (Exception ex)
             {
                 throw ex;
             }
-            
+
+            return View("Employee");
         }
 
     }

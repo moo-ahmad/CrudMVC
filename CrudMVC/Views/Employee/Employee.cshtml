@@ -1,9 +1,4 @@
-﻿@*@model List<CrudMVC.Models.employee>*@
-@model CrudMVC.Models.employee
-@*@{ 
-    CrudMVC.Models.employee x = new CrudMVC.Models.employee();
-}*@
-
+﻿@model IEnumerable<CrudMVC.Models.employee>
 
 @{
     ViewBag.Title = "Index";
@@ -83,40 +78,40 @@
 
                     <h2 class="modal-title">Add Employee Record</h2>
                 </div>
-                <div class="modal-body">
+                @*<div class="modal-body">
 
-                    @using (Html.BeginForm("AddEmployee","Employee",FormMethod.Post))
+                    @using (Html.BeginForm("addemployee","employee",FormMethod.Post))
                     {
                        
                     <div class="container">
 
                         <div class="form-group">
 
-                            <label>Name</label>
+                            <label>name</label>
                             @Html.TextBoxFor(x => x.FullName, new { @class = "form-control" })
                             
 
                         </div>
                         <div class="form-group">
 
-                            <label>Age</label>
+                            <label>age</label>
                             @Html.TextBoxFor(x => x.Age, new { @type="number", @onkeypress = "return this.value.length<=1", @class = "form-control" })
 
                         </div>
                         <div class="form-group">
 
-                            <label>Hire Date</label>
+                            <label>hire date</label>
                             @Html.TextBoxFor(x => x.StartDate, new {@type="date", @max = "9999-12-31", @class = "form-control" })
 
                         </div>
                         <div class="form-group">
-                            <label>Salary</label>
+                            <label>salary</label>
                             
                             @Html.TextBoxFor(x => x.Salary, new { @type="number", @class = "form-control" })
 
                         </div>
                         <div class="form-group">
-                            <button type="submit" onclick="AddEmployee" class="btn btn-primary">Submit</button>
+                            <button type="submit" onclick="addemployee" class="btn btn-primary">Submit</button>
                             <button type="reset" class="btn btn-primary">Reset</button>
 
                         </div>
@@ -125,7 +120,12 @@
                     }
 
 
-                </div>
+                </div>*@
+
+            <div class="modal-body">
+                @Html.Partial("Create", new CrudMVC.Models.employee());
+            </div>
+
                 <div class="modal-footer">
                     <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                 </div>
@@ -147,7 +147,7 @@
         </thead>
         <tbody>
             
-                @*@foreach (var item in Model)
+                @foreach (var item in Model)
                 {
                     <tr>
                         <td>@item.FullName</td>
@@ -161,7 +161,9 @@
 
                         </td>
                     </tr>
-                }*@
+                }
+
+            @*@Html.Partial("_DataList",Model);*@
 
         </tbody>
 

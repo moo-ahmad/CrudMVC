@@ -207,7 +207,7 @@
     <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Employee\Employee.cshtml" />
-    <Content Include="Views\Shared\Create.cshtml" />
+    <Content Include="Views\Shared\_CreateData.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

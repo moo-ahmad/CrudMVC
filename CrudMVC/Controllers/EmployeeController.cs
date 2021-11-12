@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Data.Entity;
+
 using System.Web;
 using System.Web.Mvc;
 using CrudMVC.Models;
@@ -13,27 +15,21 @@ namespace CrudMVC.Controllers
 
         EmployeeEntities2 dbobj2 = new EmployeeEntities2();
 
+        [HttpGet]
         public ActionResult Employee()
         {
 
             var res = dbobj2.employees.ToList();
-            
+
             return View(res);
         }
-
-        //[HttpGet]
-        //public PartialViewResult Create()
-        //{
-        //    var res = dbobj2.employees;
-        //    return PartialView("_DataList", res);
-        //}
 
         [HttpPost]
         public ActionResult AddEmployee(employee model)
         {
             Debug.Write("We are in.....");
 
-            
+
 
             try
             {
@@ -52,8 +48,9 @@ namespace CrudMVC.Controllers
             {
                 throw ex;
             }
+            var res = dbobj2.employees.ToList();
 
-            return View("Employee");
+            return View("Employee", res);
         }
 
     }

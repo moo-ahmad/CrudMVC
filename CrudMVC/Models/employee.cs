@@ -12,16 +12,23 @@ namespace CrudMVC.Models
     using System;
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
-    
-    public partial class employee : List<employee>
+    using System.Data.Entity;
+
+    public partial class employee
     {
         public int ID { get; set; }
+
+        [Required(ErrorMessage = "Required")]
         public string FullName { get; set; }
+        [Required(ErrorMessage = "Required")]
         public Nullable<int> Age { get; set; }
+        [Required(ErrorMessage = "Required")]
         [DataType(DataType.Date)]
         [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}", ApplyFormatInEditMode = true)]
 
         public Nullable<System.DateTime> StartDate { get; set; }
+        [Required(ErrorMessage = "Required")]
         public Nullable<int> Salary { get; set; }
     }
+
 }

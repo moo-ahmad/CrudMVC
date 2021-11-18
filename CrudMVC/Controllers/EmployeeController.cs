@@ -49,29 +49,29 @@ namespace CrudMVC.Controllers
         }
       
 
-        [HttpPost]
+        
         public ActionResult AddEmployee(employee model)
         {
-            try
-            {
+            //try
+            //{
 
-                employee obj = new employee();
-                obj.FullName = model.FullName;
-                obj.Age = model.Age;
-                obj.StartDate = model.StartDate;
-                obj.Salary = model.Salary;
+            //    employee obj = new employee();
+            //    obj.FullName = model.FullName;
+            //    obj.Age = model.Age;
+            //    obj.StartDate = model.StartDate;
+            //    obj.Salary = model.Salary;
 
-                dbobj2.employees.Add(obj);
+            //    dbobj2.employees.Add(obj);
 
-                dbobj2.SaveChanges();
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
-            var res = dbobj2.employees.ToList();
+            //    dbobj2.SaveChanges();
+            //}
+            //catch (Exception ex)
+            //{
+            //    throw ex;
+            //}
+            
 
-            return View("Employee", res);
+            return View("AddEmployee");
         }
         
        

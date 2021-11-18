@@ -26,6 +26,12 @@ namespace CrudMVC.Controllers
             pageIndex = page.HasValue ? Convert.ToInt32(page) : 1;
             ViewBag.NameSortParm = String.IsNullOrEmpty(sortOrder) ? "name_desc" : "";
             var res = dbobj2.employees.ToList();
+
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                res = res.Where(s => s.FullName.Contains(searchString)).ToList();
+            }
+
             switch (sortOrder)
             {
                 case "name_desc":
